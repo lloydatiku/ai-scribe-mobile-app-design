@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap">
+<style>
+  html,body{margin:0;padding:0;background:#e8ecef;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:#1a2b33;-webkit-font-smoothing:antialiased;}
+  a{color:#0f766e;text-decoration:none;} a:hover{color:#0b5a54;text-decoration:underline;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  @keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+  ::-webkit-scrollbar{width:0px;height:0px}
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0f766e"/><rect x="36" y="26" width="28" height="48" rx="6" fill="#fdfcf9"/><rect x="42" y="34" width="16" height="3.5" rx="1.75" fill="#0f766e"/><rect x="42" y="41" width="12" height="3.5" rx="1.75" fill="#9fd8d0"/></svg></template>
+
+<div style="display:flex;gap:26px;padding:40px;align-items:flex-start;justify-content:center;min-height:100vh;box-sizing:border-box">
+
+  <!-- ===================== PHONE ===================== -->
+  <div style="background:#14181b;border-radius:52px;padding:12px;box-shadow:0 24px 60px rgba(20,30,40,.3);flex:none">
+    <div style="width:390px;height:844px;background:#f4f7f8;border-radius:42px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+
+      <!-- status bar -->
+      <div style="flex:none;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;background:#ffffff">
+        <span style="font-size:14px;font-weight:700">9:41</span>
+        <div style="width:112px;height:28px;background:#14181b;border-radius:16px;position:absolute;left:50%;transform:translateX(-50%);top:10px"></div>
+        <span style="font-size:11px;font-weight:600;letter-spacing:.02em">●●● ⌁ ▮</span>
+      </div>
+
+      <!-- app header -->
+      <div style="flex:none;background:#ffffff;border-bottom:1px solid #dde4e8;padding:8px 16px 10px;display:flex;align-items:center;gap:10px">
+        <sc-if value="{{ headerBack }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ goBackMore }}" style="background:#eef2f4;border:none;border-radius:50%;width:30px;height:30px;font-size:13px;cursor:pointer;color:#33454e;font-family:inherit;flex:none">‹</button>
+        </sc-if>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ headerTitle }}</div>
+          <div style="font-size:10.5px;color:#5b6b74;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ headerSub }}</div>
+        </div>
+        <sc-if value="{{ recording }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;gap:5px;background:#fdecec;border:1px solid #f2c6c8;padding:3px 9px;border-radius:14px;flex:none">
+            <span style="width:7px;height:7px;border-radius:50%;background:#c22730;animation:pulse 1.1s infinite"></span>
+            <span style="font-size:10px;font-weight:700;color:#a3202a">{{ recClock }}</span>
+          </div>
+        </sc-if>
+        <span style="{{ flagPillStyle }}">{{ flagPillLabel }}</span>
+      </div>
+
+      <!-- toast -->
+      <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:104px;left:14px;right:14px;z-index:80;background:#1a2b33;color:#fff;font-size:12px;padding:10px 14px;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.3);line-height:1.45">{{ toast }}</div>
+      </sc-if>
+
+      <!-- content -->
+      <div style="flex:1;overflow:auto;position:relative;display:flex;flex-direction:column">
+
+      <!-- ============ HOME ============ -->
+      <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:18px 16px 24px;display:flex;flex-direction:column;gap:14px;background:linear-gradient(180deg,#f9fbfb,#eef3f4);flex:1">
+          <div>
+            <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0f766e">Riverside Family Practice</div>
+            <div style="font-family:Newsreader,Georgia,serif;font-size:24px;font-weight:500;color:#12242b;margin-top:5px">Good morning, Dr. Hassan</div>
+            <div style="font-size:11.5px;color:#5b6b74;margin-top:4px">3 encounters · <strong style="color:#a3202a">1 needs attention</strong> · sorted by safety</div>
+          </div>
+
+          <div onClick="{{ goRecord }}" style="background:#ffffff;border:1px solid #d8e2e4;border-radius:18px;cursor:pointer;box-shadow:0 14px 34px rgba(18,50,60,.09);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;padding:14px 16px">
+              <span style="{{ badgeStyle }}">1</span>
+              <div style="width:42px;height:42px;border-radius:50%;background:#0f766e;color:#fdfcf9;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;font-family:Newsreader,Georgia,serif;flex:none">AO</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:Newsreader,Georgia,serif;font-size:16px;font-weight:600;color:#12242b">Adaeze O. <span style="color:#8a979e;font-size:12px;font-weight:400">54F</span></div>
+                <div style="font-size:10.5px;color:#5b6b74;margin-top:2px">Hypertension follow-up · 09:15</div>
+              </div>
+              <span style="{{ homeFlagStyle }}">{{ homeFlagLabel }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:7px;border-top:1px solid #edf2f3;background:#fbfdfd;padding:9px 16px;flex-wrap:wrap">
+              <span style="font-size:9.5px;font-weight:700;color:#1f7a3d">Consent ✓</span><span style="color:#c2ccd1;font-size:9px">→</span>
+              <span style="font-size:9.5px;font-weight:700;color:#1f7a3d">Recorded ✓</span><span style="color:#c2ccd1;font-size:9px">→</span>
+              <span style="font-size:9.5px;font-weight:700;color:#1f7a3d">Drafted ✓</span><span style="color:#c2ccd1;font-size:9px">→</span>
+              <span style="{{ noteStateStyle }}">{{ noteStateLabel }}</span><span style="color:#c2ccd1;font-size:9px">→</span>
+              <span style="{{ ehrChipStyle }}">{{ ehrChipLabel }}</span>
+            </div>
+          </div>
+
+          <div style="background:#ffffff;border:1px solid #dfe7e9;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:11px;opacity:.9">
+            <div style="width:36px;height:36px;border-radius:50%;background:#efeaf7;color:#6d4fa1;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;font-family:Newsreader,Georgia,serif;flex:none">MB</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-family:Newsreader,Georgia,serif;font-size:14px;font-weight:600;color:#12242b">Musa B.</div>
+              <div style="font-size:10px;color:#5b6b74">Diabetes review · 10:00</div>
+            </div>
+            <span style="font-size:9.5px;font-weight:600;background:#efeaf7;color:#6d4fa1;padding:3px 9px;border-radius:12px;white-space:nowrap">Processing…</span>
+          </div>
+          <div style="background:#ffffff;border:1px solid #dfe7e9;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:11px;opacity:.9">
+            <div style="width:36px;height:36px;border-radius:50%;background:#eaeef2;color:#475569;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;font-family:Newsreader,Georgia,serif;flex:none">KE</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-family:Newsreader,Georgia,serif;font-size:14px;font-weight:600;color:#12242b">Kemi E.</div>
+              <div style="font-size:10px;color:#5b6b74">Chest pain review · signed 08:58</div>
+            </div>
+            <span style="font-size:9.5px;font-weight:600;background:#e3f1e7;color:#1f7a3d;padding:3px 9px;border-radius:12px;white-space:nowrap">Exported ✓</span>
+          </div>
+
+          <div style="margin-top:auto">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+              <span style="{{ badgeStyle }}">2</span>
+              <span style="font-size:10px;font-weight:700;color:#5b6b74;text-transform:uppercase;letter-spacing:.08em">This week</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;background:#ffffff;border:1px solid #d8e2e4;border-radius:14px;overflow:hidden">
+              <div style="padding:12px 14px;border-right:1px solid #edf2f3;border-bottom:1px solid #edf2f3"><div style="font-size:9px;color:#8a979e;font-weight:700;letter-spacing:.05em;text-transform:uppercase">Draft latency</div><div style="font-family:Newsreader,Georgia,serif;font-size:20px;color:#12242b;margin-top:3px">38 s</div></div>
+              <div style="padding:12px 14px;border-bottom:1px solid #edf2f3"><div style="font-size:9px;color:#8a979e;font-weight:700;letter-spacing:.05em;text-transform:uppercase">Note length</div><div style="font-family:Newsreader,Georgia,serif;font-size:20px;color:#12242b;margin-top:3px">+9%</div></div>
+              <div style="padding:12px 14px;border-right:1px solid #edf2f3"><div style="font-size:9px;color:#8a979e;font-weight:700;letter-spacing:.05em;text-transform:uppercase">Replay burden</div><div style="font-family:Newsreader,Georgia,serif;font-size:20px;color:#12242b;margin-top:3px">2.1 min</div></div>
+              <div style="padding:12px 14px"><div style="font-size:9px;color:#8a979e;font-weight:700;letter-spacing:.05em;text-transform:uppercase">Blocked signs</div><div style="font-family:Newsreader,Georgia,serif;font-size:20px;color:#12242b;margin-top:3px">{{ unsafeAttempts }}</div></div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ RECORD (consent + capture) ============ -->
+      <sc-if value="{{ isRecord }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px;flex:1">
+          <div style="background:#fff;border:1px solid #dde4e8;border-radius:16px;padding:14px 16px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="{{ badgeStyle }}">1</span><span style="font-size:13px;font-weight:700">Consent — each permission separate</span></div>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ consentItems }}" as="c" hint-placeholder-count="5">
+                <div onClick="{{ c.toggle }}" style="{{ c.rowStyle }}">
+                  <div style="flex:1;min-width:0"><div style="font-size:12.5px;font-weight:600">{{ c.label }}</div><div style="font-size:10px;color:#5b6b74;margin-top:1px;line-height:1.35">{{ c.desc }}</div></div>
+                  <div style="{{ c.swStyle }}"><div style="{{ c.knobStyle }}"></div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="background:#fff;border:1px solid #dde4e8;border-radius:16px;padding:14px 16px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="{{ badgeStyle }}">2</span><span style="font-size:13px;font-weight:700">Readiness</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <span style="font-size:10.5px;font-weight:600;background:#e3f1e7;color:#1f7a3d;padding:4px 10px;border-radius:12px">Mic ✓</span>
+              <span style="font-size:10.5px;font-weight:600;background:#e3f1e7;color:#1f7a3d;padding:4px 10px;border-radius:12px">Network ✓</span>
+              <span style="font-size:10.5px;font-weight:600;background:#e3f1e7;color:#1f7a3d;padding:4px 10px;border-radius:12px">EHR #E-20481 ✓</span>
+              <span style="font-size:10.5px;font-weight:600;background:#eaeef2;color:#475569;padding:4px 10px;border-radius:12px">English · no interpreter</span>
+              <span style="font-size:10.5px;font-weight:600;background:#eaeef2;color:#475569;padding:4px 10px;border-radius:12px">Verbal consent · script v4.1 · 09:14</span>
+            </div>
+          </div>
+
+          <div style="{{ readyCardStyle }}">
+            <div style="display:flex;align-items:center;gap:8px"><span style="{{ badgeStyle }}">3</span><div style="font-size:14px;font-weight:700">{{ readyTitle }}</div></div>
+            <div style="font-size:11px;margin-top:3px;opacity:.85">{{ readyDesc }}</div>
+            <button onClick="{{ toggleRec }}" style="{{ recBtnStyle }}" style-hover="filter:brightness(1.08)">{{ recBtnLabel }}</button>
+            <sc-if value="{{ recording }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;gap:5px;margin-top:10px;justify-content:center">
+                <div style="width:4px;height:16px;background:#c22730;border-radius:2px;animation:eq .7s infinite"></div>
+                <div style="width:4px;height:16px;background:#c22730;border-radius:2px;animation:eq .7s .15s infinite"></div>
+                <div style="width:4px;height:16px;background:#c22730;border-radius:2px;animation:eq .7s .3s infinite"></div>
+                <span style="font-size:11.5px;font-weight:700;color:#a3202a;margin-left:5px">Listening · {{ recClock }}</span>
+              </div>
+            </sc-if>
+          </div>
+          <div style="background:#fdf3e0;border:1px solid #ecd9ab;border-radius:12px;padding:10px 13px;font-size:10.5px;color:#6b4a10;line-height:1.5">Pause = hard mute for sensitive moments; paused spans never enter the transcript. If the patient declines, a non-recording workflow keeps care moving.</div>
+        </div>
+      </sc-if>
+
+      <!-- ============ CHAT (transcript + live verify sheet) ============ -->
+      <sc-if value="{{ isChat }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#e9eef0;flex:1;display:flex;flex-direction:column;min-height:0">
+          <div style="display:flex;align-items:center;gap:8px;background:#fdf3e0;border-bottom:1px solid #ecd9ab;padding:6px 14px;flex:none">
+            <span style="{{ badgeStyle }}">1</span>
+            <span style="font-size:10px;color:#6b4a10;font-weight:600">Audio good · diarisation 96% · patient left, clinician right · ▶ replays the span</span>
+          </div>
+          <div style="flex:1;overflow:auto;padding:12px 12px 130px;display:flex;flex-direction:column;gap:2px">
+            <sc-for list="{{ turns }}" as="u" hint-placeholder-count="10">
+              <div style="{{ u.rowStyle }}">
+                <div style="{{ u.bubbleStyle }}">
+                  <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px">
+                    <span style="{{ u.nameStyle }}">{{ u.name }}</span>
+                    <span style="font-size:10px;color:#8a979e;font-family:ui-monospace,Menlo,monospace">{{ u.time }}</span>
+                    <button onClick="{{ u.play }}" style="{{ u.playStyle }}">{{ u.playIcon }}</button>
+                    <sc-if value="{{ u.playing }}" hint-placeholder-val="{{ false }}">
+                      <span style="display:inline-flex;gap:2px;align-items:flex-end;height:10px">
+                        <span style="width:2.5px;height:10px;background:#0f766e;border-radius:2px;animation:eq .6s infinite;display:inline-block"></span>
+                        <span style="width:2.5px;height:10px;background:#0f766e;border-radius:2px;animation:eq .6s .12s infinite;display:inline-block"></span>
+                        <span style="width:2.5px;height:10px;background:#0f766e;border-radius:2px;animation:eq .6s .24s infinite;display:inline-block"></span>
+                      </span>
+                    </sc-if>
+                  </div>
+                  <div style="font-size:14px;line-height:1.5">{{ u.text }}</div>
+                  <sc-if value="{{ u.hasMeta }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px">
+                      <sc-for list="{{ u.flags }}" as="f" hint-placeholder-count="1"><span style="{{ f.style }}">{{ f.label }}</span></sc-for>
+                      <sc-for list="{{ u.links }}" as="lk" hint-placeholder-count="1">
+                        <button onClick="{{ lk.go }}" style="font-size:10.5px;font-weight:700;color:#0f766e;background:#e4f2f0;border:1px solid #bcdcd7;border-radius:11px;padding:2px 9px;cursor:pointer;font-family:inherit">→ {{ lk.sid }}</button>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+            <sc-if value="{{ recording }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;justify-content:flex-start;margin-top:5px">
+                <div style="background:#fff;border:1.5px dashed #c22730;border-radius:14px;padding:8px 13px;display:flex;align-items:center;gap:7px">
+                  <span style="width:7px;height:7px;border-radius:50%;background:#c22730;animation:pulse 1s infinite"></span>
+                  <span style="font-size:11px;color:#a3202a;font-weight:600">Listening… {{ recClock }}</span>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+
+          <!-- live verification bottom sheet -->
+          <div style="{{ verifySheetStyle }}">
+            <div onClick="{{ toggleVerifySheet }}" style="padding:10px 16px 8px;cursor:pointer;flex:none">
+              <div style="width:38px;height:4px;border-radius:2px;background:#c6cfd4;margin:0 auto 8px"></div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="{{ badgeStyle }}">2</span>
+                <span style="font-size:13.5px;font-weight:700;flex:1">Live verification</span>
+                <span style="{{ flagChipStyle }}">{{ flagChipLabel }}</span>
+                <span style="font-size:12px;color:#5b6b74">{{ verifySheetCaret }}</span>
+              </div>
+            </div>
+            <sc-if value="{{ verifySheetOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="overflow:auto;padding:4px 14px 16px;display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ taskCards }}" as="tk" hint-placeholder-count="4">
+                  <div style="{{ tk.cardStyleCompact }}">
+                    <div style="display:flex;align-items:center;gap:6px">
+                      <span style="{{ tk.sevStyle }}">{{ tk.sev }}</span>
+                      <span style="font-size:10px;font-weight:700;color:#5b6b74;text-transform:uppercase;letter-spacing:.03em">{{ tk.cat }}</span>
+                      <span style="font-size:9px;color:#8a979e;font-family:ui-monospace,Menlo,monospace;margin-left:auto">{{ tk.ref }}</span>
+                    </div>
+                    <div style="font-size:12.5px;margin-top:6px;line-height:1.45">“{{ tk.sentence }}”</div>
+                    <div style="font-size:10.5px;color:#8a4b0f;background:#fdf3e0;border-radius:7px;padding:6px 9px;margin-top:6px;line-height:1.4">{{ tk.why }}</div>
+                    <sc-if value="{{ tk.isOpen }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+                        <sc-for list="{{ tk.actions }}" as="a" hint-placeholder-count="2">
+                          <button onClick="{{ a.run }}" style="{{ a.styleCompact }}">{{ a.label }}</button>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ tk.resolution }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size:10.5px;color:#1f7a3d;font-weight:600;margin-top:7px">✓ {{ tk.resolution }}</div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ allResolved }}" hint-placeholder-val="{{ false }}">
+                  <div style="background:#e3f1e7;border:1px solid #b9dcc3;border-radius:10px;padding:10px 12px;font-size:11px;color:#1f7a3d;font-weight:600">✓ All flags resolved — the sign gate is open on the Note screen.</div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ NOTE ============ -->
+      <sc-if value="{{ isNote }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:14px 14px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="{{ badgeStyle }}">1</span>
+            <div style="flex:1">
+              <div style="font-size:14px;font-weight:700">Draft note — SOAP</div>
+              <div style="font-size:9.5px;color:#5b6b74;font-family:ui-monospace,Menlo,monospace">SOAP v12 · scribe-v3.2</div>
+            </div>
+            <button onClick="{{ trySign }}" style="{{ signBtnStyle }}">{{ signBtnLabel }}</button>
+          </div>
+          <div style="display:flex;gap:5px;align-items:center;background:#eaeef2;border-radius:9px;padding:6px 10px;flex-wrap:wrap">
+            <span style="{{ badgeStyle }}">2</span>
+            <sc-for list="{{ provLegendMini }}" as="p" hint-placeholder-count="5"><span style="{{ p.tokStyle }}">{{ p.code }}</span></sc-for>
+            <span style="font-size:9.5px;color:#475569">tap a sentence for evidence</span>
+          </div>
+          <sc-for list="{{ noteSections }}" as="sec" hint-placeholder-count="4">
+            <div style="background:#fff;border:1px solid #dde4e8;border-radius:13px;padding:11px 13px">
+              <div style="font-size:10px;font-weight:700;color:#0f766e;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">{{ sec.title }}</div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <sc-for list="{{ sec.sentences }}" as="s" hint-placeholder-count="3">
+                  <div onClick="{{ s.open }}" style="{{ s.rowStyle }}">
+                    <span style="{{ s.tokStyle }}">{{ s.prov }}</span>
+                    <span style="flex:1;font-size:12.5px;line-height:1.5">{{ s.text }}</span>
+                    <sc-if value="{{ s.chip }}" hint-placeholder-val="{{ false }}"><span style="{{ s.chipStyle }}">⚑</span></sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <div style="font-size:10px;color:#475569;background:#eaeef2;border-radius:9px;padding:7px 10px;line-height:1.5"><strong>Sign</strong> stays locked until every flag is cleared in the Chat screen's live verification sheet.</div>
+        </div>
+      </sc-if>
+
+      <!-- ============ MORE (hub) ============ -->
+      <sc-if value="{{ isMoreHub }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:16px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <sc-for list="{{ moreItems }}" as="mi" hint-placeholder-count="4">
+            <div onClick="{{ mi.go }}" style="background:#fff;border:1px solid #dde4e8;border-radius:16px;padding:16px;display:flex;align-items:center;gap:13px;cursor:pointer" style-hover="background:#f6f9fa">
+              <div style="{{ mi.iconStyle }}">{{ mi.icon }}</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:14px;font-weight:700">{{ mi.title }}</div>
+                <div style="font-size:10.5px;color:#5b6b74;margin-top:2px;line-height:1.4">{{ mi.desc }}</div>
+              </div>
+              <sc-if value="{{ mi.chip }}" hint-placeholder-val="{{ false }}"><span style="{{ mi.chipStyle }}">{{ mi.chip }}</span></sc-if>
+              <span style="font-size:15px;color:#8a979e">›</span>
+            </div>
+          </sc-for>
+          <div style="margin-top:auto;font-size:10px;color:#8a979e;line-height:1.55;text-align:center;padding:0 12px">All patient data synthetic · concept per the AI scribe system design workbook.<br/>listen → transcribe → draft → explain → verify → sign → write back</div>
+        </div>
+      </sc-if>
+
+      <!-- ============ EVIDENCE (sub) ============ -->
+      <sc-if value="{{ isEvidenceSub }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:14px 14px 20px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:8px"><span style="{{ badgeStyle }}">1</span><span style="font-size:13px;font-weight:700">How a spoken word becomes a signed record</span></div>
+          <div style="background:#fff;border:1px solid #dde4e8;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:0">
+            <sc-for list="{{ pipeline }}" as="st" hint-placeholder-count="5">
+              <div style="display:flex;gap:12px">
+                <div style="display:flex;flex-direction:column;align-items:center;flex:none">
+                  <div style="{{ st.dotStyle }}">{{ st.icon }}</div>
+                  <sc-if value="{{ st.arrow }}" hint-placeholder-val="{{ false }}"><div style="width:2px;flex:1;min-height:16px;background:#d5e4e1;margin:3px 0"></div></sc-if>
+                </div>
+                <div style="padding-bottom:14px">
+                  <div style="font-size:12.5px;font-weight:700;margin-top:8px">{{ st.name }}</div>
+                  <div style="font-size:10.5px;color:#5b6b74;margin-top:2px;line-height:1.45">{{ st.desc }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="{{ badgeStyle }}">2</span><span style="font-size:13px;font-weight:700">The five provenance classes</span></div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <sc-for list="{{ provLegend }}" as="p" hint-placeholder-count="5">
+              <div style="background:#fff;border:1px solid #dde4e8;border-radius:12px;padding:11px 13px;display:flex;gap:11px;align-items:flex-start">
+                <span style="{{ p.tokStyle }}">{{ p.code }}</span>
+                <div style="min-width:0"><div style="font-size:12.5px;font-weight:700">{{ p.name }}</div><div style="font-size:10.5px;color:#5b6b74;line-height:1.45;margin-top:2px">{{ p.desc }}</div></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ PATIENT (sub) ============ -->
+      <sc-if value="{{ isPatientSub }}" hint-placeholder-val="{{ false }}">
+        <div style="background:linear-gradient(180deg,#f0ece4,#f4f1ea);flex:1;padding:16px 14px 22px;display:flex;flex-direction:column;gap:12px">
+          <div style="text-align:center;font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7a7261">What Adaeze sees on her phone</div>
+          <div style="background:#fdfcf9;border:1px solid #e7e1d3;border-radius:18px;box-shadow:0 16px 36px rgba(70,58,30,.1);overflow:hidden">
+            <div style="padding:18px 20px 14px;border-bottom:1px solid #efe9dc">
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0f766e">Riverside Family Practice</span>
+                <span style="font-size:10px;color:#9a917e;font-family:Newsreader,Georgia,serif;font-style:italic">6 July · 09:15</span>
+              </div>
+              <div style="font-family:Newsreader,Georgia,serif;font-size:21px;font-weight:500;color:#241f14;margin-top:8px;line-height:1.2">Your visit summary, Adaeze</div>
+              <div style="font-size:10px;color:#7a7261;margin-top:4px">Signed by <strong style="color:#3d382a">Dr. Hassan</strong></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #efe9dc">
+              <div style="padding:12px;border-right:1px solid #efe9dc;text-align:center"><div style="font-size:8.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9a917e">BP today</div><div style="font-family:Newsreader,Georgia,serif;font-size:19px;color:#241f14;margin-top:3px">142/88</div><div style="font-size:9px;color:#0f766e;font-weight:600">Improving ↘</div></div>
+              <div style="padding:12px;border-right:1px solid #efe9dc;text-align:center"><div style="font-size:8.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9a917e">Target</div><div style="font-family:Newsreader,Georgia,serif;font-size:19px;color:#241f14;margin-top:3px">135/85</div><div style="font-size:9px;color:#7a7261">Nearly there</div></div>
+              <div style="padding:12px;text-align:center"><div style="font-size:8.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9a917e">Review</div><div style="font-family:Newsreader,Georgia,serif;font-size:19px;color:#241f14;margin-top:3px">4 wks</div><div style="font-size:9px;color:#7a7261">Blood test first</div></div>
+            </div>
+            <div style="padding:14px 20px 16px;display:flex;flex-direction:column;gap:2px">
+              <sc-for list="{{ patientParas }}" as="pp" hint-placeholder-count="4">
+                <div>
+                  <sc-if value="{{ pp.heading }}" hint-placeholder-val="{{ false }}">
+                    <div style="font-family:Newsreader,Georgia,serif;font-size:13.5px;font-weight:600;color:#241f14;margin:10px 0 3px">{{ pp.heading }}</div>
+                  </sc-if>
+                  <div style="{{ pp.rowStyle }}">
+                    <div style="flex:1;font-size:11.5px;line-height:1.65;color:#3d382a">{{ pp.text }}</div>
+                    <button onClick="{{ pp.flag }}" style="{{ pp.btnStyle }}">⚑</button>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ flaggingPara }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#fdfcf9;border:1px solid #e7e1d3;border-left:3px solid #0f766e;border-radius:14px;padding:14px 16px">
+              <div style="font-family:Newsreader,Georgia,serif;font-size:14px;font-weight:600;color:#241f14">Tell us what's not right</div>
+              <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">
+                <sc-for list="{{ correctionReasons }}" as="cr" hint-placeholder-count="4">
+                  <button onClick="{{ cr.pick }}" style="{{ cr.style }}">{{ cr.label }}</button>
+                </sc-for>
+              </div>
+              <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
+                <button onClick="{{ submitCorrection }}" style="{{ submitCorStyle }}">Send to care team</button>
+                <button onClick="{{ cancelFlag }}" style="background:transparent;border:none;color:#9a917e;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:underline">Cancel</button>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ correctionSent }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#fdfcf9;border:1px solid #e7e1d3;border-left:3px solid #1f7a3d;border-radius:14px;padding:12px 16px">
+              <div style="font-family:Newsreader,Georgia,serif;font-size:13px;font-weight:600;color:#1f7a3d">Request CR-1042 is with your doctor</div>
+              <div style="font-size:10.5px;color:#7a7261;margin-top:3px;line-height:1.5">Response within 5 working days. Serious errors auto-escalate.</div>
+            </div>
+          </sc-if>
+
+          <div style="background:#fdfcf9;border:1px solid #e7e1d3;border-radius:14px;padding:14px 16px">
+            <div style="display:flex;align-items:center;gap:8px"><span style="{{ badgeStyle }}">2</span><div style="font-family:Newsreader,Georgia,serif;font-size:14px;font-weight:600;color:#241f14">Review &amp; sign</div></div>
+            <div style="font-size:10.5px;color:#7a7261;line-height:1.5;margin-top:4px">{{ ackHint }}</div>
+            <sc-if value="{{ notAcked }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ patientAck }}" style="font-family:inherit;width:100%;margin-top:10px;font-size:12px;font-weight:700;border-radius:10px;padding:11px;border:none;cursor:pointer;background:#241f14;color:#fdfcf9">✍ I've read this — sign &amp; approve</button>
+            </sc-if>
+            <sc-if value="{{ patientAcked }}" hint-placeholder-val="{{ false }}">
+              <div style="border:1px dashed #d8d0bd;border-radius:10px;padding:10px;margin-top:10px;text-align:center;background:#fbf8f1">
+                <div style="font-family:Newsreader,Georgia,serif;font-style:italic;font-size:18px;color:#241f14">Adaeze Okafor</div>
+                <div style="font-size:8px;color:#9a917e;margin-top:2px;letter-spacing:.08em">SIGNED · 09:56 · IDENTITY VERIFIED</div>
+              </div>
+            </sc-if>
+            <div style="border-top:1px solid #efe9dc;margin-top:12px;padding-top:12px">
+              <div style="display:flex;align-items:center;gap:8px"><span style="{{ badgeStyle }}">3</span><div style="font-family:Newsreader,Georgia,serif;font-size:14px;font-weight:600;color:#241f14">Send to my record</div></div>
+              <div style="font-size:10.5px;color:#7a7261;line-height:1.5;margin-top:4px">{{ pushHint }}</div>
+              <sc-if value="{{ notPushed }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ pushEHR }}" style="{{ pushBtnStyle }}">⬆ Push to EHR</button>
+              </sc-if>
+              <sc-if value="{{ pushed }}" hint-placeholder-val="{{ false }}">
+                <div style="background:#eaf3ec;border:1px solid #cfe3d4;border-radius:10px;padding:9px 12px;margin-top:10px;font-size:10.5px;color:#1f7a3d;font-weight:600;line-height:1.5">✓ In your medical record · #E-20481 · 09:58</div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ WRITE-BACK (sub) ============ -->
+      <sc-if value="{{ isWritebackSub }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:14px 14px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <div style="background:#fff;border:1px solid #dde4e8;border-radius:14px;padding:13px 14px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="{{ badgeStyle }}">1</span><span style="font-size:13px;font-weight:700">Field mapping → EHR</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <sc-for list="{{ mappings }}" as="m" hint-placeholder-count="6">
+                <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:#f6f9fa;border-radius:9px">
+                  <div style="flex:1;min-width:0"><div style="font-size:11.5px;font-weight:700">{{ m.what }}</div><div style="font-size:9px;color:#5b6b74;font-family:ui-monospace,Menlo,monospace;margin-top:1px">{{ m.route }}</div></div>
+                  <span style="{{ m.stStyle }}">{{ m.status }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #dde4e8;border-radius:14px;padding:13px 14px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="{{ badgeStyle }}">2</span><span style="font-size:13px;font-weight:700">Sign-off gate</span></div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <sc-for list="{{ gateItems }}" as="g" hint-placeholder-count="6">
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px"><span style="{{ g.dotStyle }}">{{ g.icon }}</span><span style="flex:1">{{ g.label }}</span></div>
+              </sc-for>
+            </div>
+            <button onClick="{{ trySign }}" style="{{ signBtnStyleWide }}">{{ signBtnLabel }}</button>
+            <sc-if value="{{ signed }}" hint-placeholder-val="{{ false }}">
+              <div style="background:#e3f1e7;border:1px solid #b9dcc3;border-radius:10px;padding:10px 12px;margin-top:8px;font-size:10.5px;color:#3d6b4a;line-height:1.55">Signed 09:52 · hash <span style="font-family:ui-monospace,Menlo,monospace">a91f…c47e</span><br/>{{ wbPatientLine }}</div>
+              <sc-if value="{{ notPushed }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ pushEHR }}" style="{{ pushBtnStyleWB }}">⬆ Push to EHR</button>
+              </sc-if>
+              <sc-if value="{{ pushed }}" hint-placeholder-val="{{ false }}">
+                <div style="background:#fff;border:1px solid #cfe3d4;border-radius:9px;padding:8px 11px;margin-top:8px;font-size:10px;color:#1f7a3d;font-weight:600">✓ Written to EHR via FHIR DocumentReference · 09:58 · #E-20481</div>
+              </sc-if>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ GOVERNANCE (sub) ============ -->
+      <sc-if value="{{ isGovSub }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:14px 14px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:#fff;border:1px solid #dde4e8;border-radius:12px;padding:11px 13px"><div style="font-size:9px;color:#5b6b74;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Blocked signs</div><div style="font-family:Newsreader,Georgia,serif;font-size:22px;margin-top:2px">{{ unsafeAttempts }}</div></div>
+            <div style="background:#fff;border:1px solid #dde4e8;border-radius:12px;padding:11px 13px"><div style="font-size:9px;color:#5b6b74;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Open corrections</div><div style="font-family:Newsreader,Georgia,serif;font-size:22px;margin-top:2px">{{ govCorrOpen }}</div></div>
+            <div style="background:#fff;border:1px solid #dde4e8;border-radius:12px;padding:11px 13px"><div style="font-size:9px;color:#5b6b74;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Hallucination rpts</div><div style="font-family:Newsreader,Georgia,serif;font-size:22px;margin-top:2px">7</div></div>
+            <div style="background:#fff;border:1px solid #dde4e8;border-radius:12px;padding:11px 13px"><div style="font-size:9px;color:#5b6b74;font-weight:700;text-transform:uppercase;letter-spacing:.05em">After-hours charting</div><div style="font-family:Newsreader,Georgia,serif;font-size:22px;margin-top:2px;color:#1f7a3d">−31%</div></div>
+          </div>
+          <div style="background:#fff;border:1px solid #dde4e8;border-radius:14px;padding:13px 14px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="{{ badgeStyle }}">1</span><span style="font-size:12.5px;font-weight:700">Error taxonomy — June · 44 flags · ▼12%</span></div>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ govBars }}" as="b" hint-placeholder-count="5">
+                <div style="{{ b.rowStyle }}">
+                  <div style="display:flex;justify-content:space-between;font-size:11px"><span style="font-weight:700">{{ b.name }}</span><span style="{{ b.trendStyle }}">{{ b.trend }} · {{ b.n }}</span></div>
+                  <div style="height:9px;background:#eef2f4;border-radius:5px;margin-top:4px"><div style="{{ b.barStyle }}"></div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #dde4e8;border-radius:14px;padding:13px 14px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="{{ badgeStyle }}">2</span><span style="font-size:12.5px;font-weight:700">Versions</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:11px">
+              <div style="display:flex;gap:8px;padding:7px 10px;background:#f6f9fa;border-radius:8px;align-items:center"><span style="font-family:ui-monospace,Menlo,monospace;font-weight:700">scribe-v3.2</span><span style="color:#5b6b74;flex:1">live 12 Jun</span><span style="font-size:9px;font-weight:700;background:#e3f1e7;color:#1f7a3d;padding:2px 8px;border-radius:10px">Active</span></div>
+              <div style="display:flex;gap:8px;padding:7px 10px;background:#f6f9fa;border-radius:8px;align-items:center"><span style="font-family:ui-monospace,Menlo,monospace;font-weight:700">scribe-v3.1</span><span style="color:#5b6b74;flex:1">negation drift</span><span style="font-size:9px;font-weight:700;background:#fdecec;color:#a3202a;padding:2px 8px;border-radius:10px">Review</span></div>
+              <div style="display:flex;gap:8px;padding:7px 10px;background:#f6f9fa;border-radius:8px;align-items:center"><span style="font-family:ui-monospace,Menlo,monospace;font-weight:700">SOAP v12</span><span style="color:#5b6b74;flex:1">approved 02 May</span><span style="font-size:9px;font-weight:700;background:#e3f1e7;color:#1f7a3d;padding:2px 8px;border-radius:10px">Active</span></div>
+            </div>
+          </div>
+          <div style="background:#1a2b33;border-radius:14px;padding:13px 16px;color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div><div style="font-size:17px;font-weight:700">$1.84</div><div style="font-size:9px;color:#a9bcc4">cost / assisted note</div></div>
+            <div><div style="font-size:17px;font-weight:700">6.2 min</div><div style="font-size:9px;color:#a9bcc4">saved / visit</div></div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ EVIDENCE DRAWER (bottom sheet) ============ -->
+      <sc-if value="{{ drawerData }}" hint-placeholder-val="{{ false }}">
+        <div onClick="{{ closeDrawer }}" style="position:absolute;inset:0;background:rgba(18,36,43,.35);z-index:58"></div>
+      </sc-if>
+      <div style="{{ drawerStyle }}">
+        <sc-if value="{{ drawerData }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:10px 16px 8px;flex:none;border-bottom:1px solid #eef2f4">
+            <div style="width:38px;height:4px;border-radius:2px;background:#c6cfd4;margin:0 auto 8px"></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="{{ badgeStyle }}">3</span>
+              <span style="font-size:13px;font-weight:700;flex:1">Evidence · {{ drawerData.sid }}</span>
+              <button onClick="{{ closeDrawer }}" style="background:#eef2f4;border:none;border-radius:8px;width:26px;height:26px;font-size:12px;cursor:pointer;color:#5b6b74;font-family:inherit">✕</button>
+            </div>
+          </div>
+          <div style="padding:12px 16px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:10px">
+            <div style="font-size:12.5px;line-height:1.55;background:#f6f9fa;border-radius:10px;padding:9px 11px">“{{ drawerData.text }}”</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="{{ drawerData.tokStyle }}">{{ drawerData.prov }}</span>
+              <div><div style="font-size:12px;font-weight:700">{{ drawerData.provName }}</div><div style="font-size:10px;color:#5b6b74;line-height:1.4">{{ drawerData.provDesc }}</div></div>
+            </div>
+            <sc-if value="{{ drawerData.hasTurns }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <sc-for list="{{ drawerData.turns }}" as="dt" hint-placeholder-count="2">
+                  <div style="border:1px solid #e4eaed;border-radius:10px;padding:8px 10px">
+                    <div style="display:flex;align-items:center;gap:6px"><span style="{{ dt.nameStyle }}">{{ dt.name }}</span><span style="font-size:9px;color:#8a979e;font-family:ui-monospace,Menlo,monospace">{{ dt.time }}</span><button onClick="{{ dt.play }}" style="{{ dt.playStyle }}">{{ dt.playIcon }}</button></div>
+                    <div style="font-size:11px;margin-top:3px;line-height:1.5;color:#33454e">“{{ dt.text }}”</div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ drawerData.noTurns }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:10.5px;color:#8a4b0f;background:#fdf3e0;border-radius:8px;padding:8px 10px;line-height:1.5">{{ drawerData.noTurnsMsg }}</div>
+            </sc-if>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <sc-for list="{{ drawerData.actions }}" as="da" hint-placeholder-count="2">
+                <button onClick="{{ da.run }}" style="{{ da.style }}">{{ da.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <!-- ============ WALKTHROUGH (bottom sheet) ============ -->
+      <sc-if value="{{ walkOpen }}" hint-placeholder-val="{{ false }}">
+        <div onClick="{{ closeWalk }}" style="position:absolute;inset:0;background:rgba(18,36,43,.35);z-index:68"></div>
+      </sc-if>
+      <div style="{{ walkStyle }}">
+        <div style="background:#1a2b33;color:#fff;padding:12px 16px;flex:none">
+          <div style="width:38px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);margin:0 auto 8px"></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="flex:1">
+              <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7fb8b1">Engineer walkthrough</div>
+              <div style="font-size:14px;font-weight:700;margin-top:2px">{{ explain.title }}</div>
+            </div>
+            <button onClick="{{ closeWalk }}" style="background:rgba(255,255,255,.14);border:none;border-radius:8px;width:26px;height:26px;font-size:12px;cursor:pointer;color:#fff;font-family:inherit">✕</button>
+          </div>
+        </div>
+        <div style="background:#fff;padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto;flex:1">
+          <div><div style="font-size:9.5px;font-weight:700;color:#0f766e;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">What this screen is</div><div style="font-size:12px;line-height:1.55;color:#33454e">{{ explain.what }}</div></div>
+          <div><div style="font-size:9.5px;font-weight:700;color:#0f766e;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Why it exists</div><div style="font-size:12px;line-height:1.55;color:#33454e">{{ explain.why }}</div></div>
+          <div>
+            <div style="font-size:9.5px;font-weight:700;color:#0f766e;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Labelled components</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <sc-for list="{{ explain.components }}" as="c" hint-placeholder-count="3">
+                <div style="display:flex;gap:8px;align-items:flex-start">
+                  <span style="flex:none;width:16px;height:16px;border-radius:50%;background:#0f766e;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-top:1px">{{ c.n }}</span>
+                  <div style="font-size:11px;line-height:1.5;color:#33454e"><strong>{{ c.name }}.</strong> {{ c.desc }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#e4f2f0;border-radius:10px;padding:10px 12px">
+            <div style="font-size:9.5px;font-weight:700;color:#0b5a54;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Try it</div>
+            <sc-for list="{{ explain.tries }}" as="tr" hint-placeholder-count="2">
+              <div style="font-size:11px;line-height:1.55;color:#0b5a54">▸ {{ tr }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- walkthrough FAB -->
+      <button onClick="{{ toggleWalk }}" style="{{ walkBtnStyle }}">ⓘ</button>
+
+      </div><!-- /content -->
+
+      <!-- ============ BOTTOM NAV ============ -->
+      <div style="flex:none;background:#ffffff;border-top:1px solid #dde4e8;display:flex;padding:6px 8px 4px">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+          <button onClick="{{ n.go }}" style="{{ n.style }}">
+            <span style="font-size:19px;line-height:1;position:relative">{{ n.icon }}<sc-if value="{{ n.badge }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-4px;right:-10px;background:#c22730;color:#fff;border-radius:9px;padding:1px 5px;font-size:8.5px;font-weight:700">{{ n.badge }}</span></sc-if></span>
+            <span style="font-size:9.5px;font-weight:700;margin-top:3px">{{ n.label }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="flex:none;background:#fff;height:22px;display:flex;align-items:center;justify-content:center"><div style="width:130px;height:5px;border-radius:3px;background:#14181b"></div></div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 500, &quot;height&quot;: 950}, &quot;showLabels&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Walkthrough&quot;}, &quot;showExplainer&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Walkthrough&quot;}}">
+class Component extends DCLogic {
+  state = {
+    tab: 'home',            // home | record | chat | note | more
+    sub: null,              // null | evidence | patient | writeback | gov
+    walkOpen: false,
+    verifySheetOpen: true,
+    recording: false,
+    recSeconds: 0,
+    playingTurn: null,
+    drawer: null,
+    toast: null,
+    consent: { rec: true, tx: true, draft: true, portal: false, secondary: false },
+    tasks: { t1: 'open', t2: 'open', t3: 'open', t4: 'open' },
+    overrides: {},
+    signed: false,
+    patientAcked: false,
+    pushed: false,
+    unsafeAttempts: 3,
+    flaggingPara: null,
+    pickedReason: null,
+    correctionSent: false
+  };
+
+  componentDidMount() {
+    this._tick = setInterval(() => {
+      if (this.state.recording) this.setState(s => ({ recSeconds: s.recSeconds + 1 }));
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this._tick); clearTimeout(this._toastT); clearTimeout(this._playT); }
+
+  toast(msg) {
+    this.setState({ toast: msg });
+    clearTimeout(this._toastT);
+    this._toastT = setTimeout(() => this.setState({ toast: null }), 3200);
+  }
+
+  get PROV() {
+    return {
+      TG: { name: 'Transcript grounded', color: '#0f766e', bg: '#e4f2f0', bd: '#bcdcd7', desc: 'Taken directly from what was said. Verify by replaying the linked audio span.' },
+      MS: { name: 'Model summarised', color: '#6d4fa1', bg: '#efeaf7', bd: '#d8cdec', desc: 'The AI compressed or rephrased utterances. Meaning may have shifted.' },
+      TP: { name: 'Template / copied forward', color: '#92610c', bg: '#faf0dc', bd: '#ecd9ab', desc: 'From a template or previous note, not this conversation.' },
+      CA: { name: 'Clinician authored', color: '#475569', bg: '#eaeef2', bd: '#d3dbe1', desc: 'Typed by the clinician. Human authorship recorded as such.' },
+      CV: { name: 'Clinician verified', color: '#1f7a3d', bg: '#e3f1e7', bd: '#b9dcc3', desc: 'Machine text explicitly reviewed and accepted by the clinician.' }
+    };
+  }
+
+  get TURNS() {
+    return [
+      { id: 'T1', role: 'c', time: '00:04', text: 'Good morning Adaeze — how have you been since we increased the lisinopril?', flags: [], links: ['S1'] },
+      { id: 'T2', role: 'p', time: '00:11', text: 'Better, I think. But I get a bit dizzy in the mornings sometimes.', flags: [], links: ['S1', 'S2'] },
+      { id: 'T3', role: 'c', time: '00:26', text: 'Are you taking it ten milligrams, once daily?', flags: [{ label: '⚠ “ten milligrams” 71%', kind: 'warn' }], links: ['S8'] },
+      { id: 'T4', role: 'p', time: '00:31', text: 'Yes… well, most days. I missed a few last week.', flags: [{ label: '⚠ brief yes/no cue', kind: 'warn' }], links: ['S3'] },
+      { id: 'T5', role: 'c', time: '00:48', text: 'Any chest pain, palpitations, or swelling in your ankles?', flags: [], links: [] },
+      { id: 'T6', role: 'p', time: '00:55', text: 'No chest pain. My ankles were a little puffy on Friday though.', flags: [{ label: '⚠ negation', kind: 'warn' }], links: ['S4', 'S5'] },
+      { id: 'T7', role: 'c', time: '02:10', text: 'Your blood pressure today is 142 over 88.', flags: [{ label: '№ number 98%', kind: 'ok' }], links: ['S6'] },
+      { id: 'T8', role: 'p', time: '02:31', text: 'Is that still high? My sister says I should try garlic tablets.', flags: [{ label: '⚠ reported speech', kind: 'warn' }], links: ['S9'] },
+      { id: 'T9', role: 'c', time: '03:02', text: 'It has improved but it is not at target yet. Let us check your kidney function and review in four weeks.', flags: [], links: ['S10', 'S11'] },
+      { id: 'T10', role: 'p', time: '03:15', text: 'Okay, that works for me.', flags: [], links: [] }
+    ];
+  }
+
+  get SENTENCES() {
+    return [
+      { id: 'S1', sec: 'Subjective', prov: 'MS', text: 'Patient reports improvement since the lisinopril dose increase.', turns: ['T1', 'T2'] },
+      { id: 'S2', sec: 'Subjective', prov: 'TG', text: 'Reports intermittent morning dizziness.', turns: ['T2'] },
+      { id: 'S3', sec: 'Subjective', prov: 'MS', text: 'Adherence incomplete; several doses missed in the past week.', turns: ['T4'] },
+      { id: 'S4', sec: 'Subjective', prov: 'MS', text: 'Denies chest pain and palpitations.', turns: ['T5', 'T6'], task: 't2' },
+      { id: 'S5', sec: 'Subjective', prov: 'TG', text: 'Mild ankle swelling noted on Friday.', turns: ['T6'] },
+      { id: 'S6', sec: 'Objective', prov: 'TG', text: 'BP 142/88 mmHg.', turns: ['T7'] },
+      { id: 'S7', sec: 'Objective', prov: 'TP', text: 'Weight stable at 78 kg.', turns: [], task: 't3' },
+      { id: 'S8', sec: 'Assessment', prov: 'MS', text: 'Hypertension, improving on lisinopril 10 mg daily but above target.', turns: ['T3', 'T7', 'T9'], task: 't1' },
+      { id: 'S9', sec: 'Assessment', prov: 'MS', text: 'Patient is considering herbal supplements (garlic tablets).', turns: ['T8'], task: 't4' },
+      { id: 'S10', sec: 'Plan', prov: 'MS', text: 'Renal function panel ordered.', turns: ['T9'] },
+      { id: 'S11', sec: 'Plan', prov: 'TG', text: 'Review appointment in four weeks.', turns: ['T9'] },
+      { id: 'S12', sec: 'Plan', prov: 'CA', text: 'Counselled on adherence and consistent morning dosing.', turns: [] }
+    ];
+  }
+
+  get TASKS() {
+    return [
+      { id: 't1', sev: 'HIGH', cat: 'Medication', ref: 'S8 ← T3', sid: 'S8',
+        why: '“ten milligrams” transcribed at 71% confidence. Wrong doses are the highest-harm error — blocks signing until confirmed.',
+        actions: [{ label: '▶ Replay T3', kind: 'ghost', act: 'play', turn: 'T3' }, { label: '✓ Dose correct', kind: 'primary', act: 'verify' }],
+        resolvedMsg: 'Dose confirmed against audio — promoted to CV' },
+      { id: 't2', sev: 'HIGH', cat: 'Negation', ref: 'S4 ← T5,T6', sid: 'S4',
+        why: 'Patient said “no chest pain” but never answered about palpitations. The AI generalised the denial — an invented negative finding.',
+        actions: [{ label: '✎ “palpitations not discussed”', kind: 'primary', act: 'rephrase', newText: 'Denies chest pain; palpitations not discussed.' }, { label: '🗑 Remove', kind: 'ghost', act: 'remove' }],
+        resolvedMsg: 'Rephrased to match evidence — promoted to CV' },
+      { id: 't3', sev: 'MED', cat: 'Template carryover', ref: 'S7 · none', sid: 'S7',
+        why: 'Weight copied from the previous visit; nothing in today\u2019s conversation supports it.',
+        actions: [{ label: '✓ Still applies', kind: 'primary', act: 'verify' }, { label: '🗑 Remove', kind: 'ghost', act: 'remove' }],
+        resolvedMsg: 'Confirmed as applicable — promoted to CV' },
+      { id: 't4', sev: 'MED', cat: 'Attribution', ref: 'S9 ← T8', sid: 'S9',
+        why: 'The garlic idea came from the patient\u2019s sister, quoted by the patient. The draft turned reported speech into her own intention.',
+        actions: [{ label: '✎ Reattribute', kind: 'primary', act: 'rephrase', newText: 'Patient mentions her sister suggested garlic supplements; discussed evidence and interactions.' }, { label: '✓ Verify as-is', kind: 'ghost', act: 'verify' }],
+        resolvedMsg: 'Reattributed correctly — promoted to CV' }
+    ];
+  }
+
+  get EXPLAIN() {
+    return {
+      home: { title: 'Home — safe-work triage',
+        what: 'The clinician\u2019s landing screen. One card per visit with a live journey strip: consent → recorded → drafted → signed → in EHR.',
+        why: 'Unfinished notes hide in scattered inboxes. This surfaces the riskiest work first — an unverified drug dose outranks a merely old note.',
+        components: [
+          { n: 1, name: 'Encounter card', desc: 'Tap to open. The journey strip updates live as you work through the flow.' },
+          { n: 2, name: 'Service indicators', desc: 'Draft speed, note bloat, replay burden, blocked unsafe signs.' }
+        ],
+        tries: ['Tap Adaeze\u2019s card to open Record.', 'Watch the flag badge on Chat count down as you resolve items there.'] },
+      record: { title: 'Record — consent & capture',
+        what: 'Everything that must be true before the microphone turns on: five separately-logged consent scopes and device readiness.',
+        why: 'Consent to record ≠ consent to AI drafting ≠ consent to portal release. Each is a separate, logged switch; recording only starts when core consent is green.',
+        components: [
+          { n: 1, name: 'Consent switches', desc: 'Five independent permissions, each stored as an audit event.' },
+          { n: 2, name: 'Readiness chips', desc: 'Mic, network, EHR encounter match — the pre-flight checklist.' },
+          { n: 3, name: 'Record control', desc: 'Goes green only when consent + devices align. Pause = hard mute.' }
+        ],
+        tries: ['Toggle “Portal release” — the chip flips instantly.', 'Start recording, then open Chat to see the live listening bubble.'] },
+      chat: { title: 'Chat — transcript + live verification',
+        what: 'The visit as a messaging thread: patient left, clinician right. Every bubble replays its own audio span. The bottom sheet raises safety flags in real time.',
+        why: 'Speech recognition mishears doses, negations and numbers. Verifying beside the replayable utterance is faster and safer than hunting through the finished note.',
+        components: [
+          { n: 1, name: 'Quality banner', desc: 'Audio + diarisation quality preserved as provenance.' },
+          { n: 2, name: 'Verification sheet', desc: 'Drag up/down. Same queue that locks the Sign button; resolve flags next to the evidence.' }
+        ],
+        tries: ['Press ▶ on the 00:26 bubble — the flagged dose.', 'Resolve all 4 flags and watch the badge clear.'] },
+      note: { title: 'Note — what will be signed',
+        what: 'The AI-drafted SOAP note. Every sentence carries a provenance token; tap one for its evidence sheet.',
+        why: 'A note is a legal document. No sentence should look like neutral fact until you know where it came from and whether a human accepted it.',
+        components: [
+          { n: 1, name: 'Sign button', desc: 'Locked while flags remain — the core safety gate.' },
+          { n: 2, name: 'Provenance tokens', desc: 'TG / MS / TP / CA / CV in the gutter of every sentence.' },
+          { n: 3, name: 'Evidence sheet', desc: 'Tap any sentence: supporting utterances, replay, review history.' }
+        ],
+        tries: ['Tap S4 (“Denies chest pain…”) to see its evidence.', 'Try Sign while flags remain — the block is logged.'] },
+      more: { title: 'More — the governed edges',
+        what: 'Everything around the core loop: the provenance reference, the patient\u2019s portal view, the EHR write-back gate, and governance analytics.',
+        why: 'Clinicians live in Home/Record/Chat/Note. These four screens are for understanding, patients, and safety leads — kept out of the way but one tap deep.',
+        components: [
+          { n: 1, name: 'Evidence & provenance', desc: 'The 5-class contract and the pipeline from speech to signed record.' },
+          { n: 2, name: 'Patient view', desc: 'Plain-language summary + counter-signature + corrections.' },
+          { n: 3, name: 'EHR write-back', desc: 'Field mapping, 6-item gate, dual signature, push.' },
+          { n: 4, name: 'Governance', desc: 'Error taxonomy, versions, corrections queue, fiscal strip.' }
+        ],
+        tries: ['Open Patient view and counter-sign after the doctor signs.', 'Open Governance to see the taxonomy that tuning thresholds feed on.'] },
+      evidence: { title: 'Evidence — the provenance system',
+        what: 'The reference: the pipeline from spoken word to signed record, and the five provenance classes.',
+        why: 'This is the contract the whole system enforces. Provenance is a graph: audio → turn → sentence → review → signed hash. Every arrow is stored data.',
+        components: [
+          { n: 1, name: 'Pipeline', desc: 'Five stages, each an auditable artifact.' },
+          { n: 2, name: 'Provenance legend', desc: 'TG, MS, TP, CA, CV — with their sign-off meaning.' }
+        ],
+        tries: ['Compare TG (replayable) with TP (no utterance at all).'] },
+      patient: { title: 'Patient — read, challenge, counter-sign',
+        what: 'What Adaeze sees: a premium plain-language summary, correction flags on every line, her signature, and the push to her record.',
+        why: 'Patients are often first to spot an AI invention. Counter-signature + tracked corrections turn that into safety data instead of phone complaints.',
+        components: [
+          { n: 1, name: 'Summary + ⚑ flags', desc: 'Tap ⚑ beside any line → reason → tracked request, 5-day SLA.' },
+          { n: 2, name: 'Review & sign', desc: 'Unlocks after the clinician signs; recorded against this exact text.' },
+          { n: 3, name: 'Push to EHR', desc: 'Enabled only when both signatures exist.' }
+        ],
+        tries: ['Flag a line and submit a correction.', 'Counter-sign, then push the note to the EHR.'] },
+      writeback: { title: 'Write-back — draft becomes legal record',
+        what: 'Field-level EHR mapping (FHIR), the six-item sign-off gate, the clinician signature, and the push.',
+        why: 'Signing hashes the exact content and freezes provenance — “what was signed” is settled. Copy-paste is a logged fallback, never the default.',
+        components: [
+          { n: 1, name: 'Field mapping', desc: 'Narrative → DocumentReference, meds → MedicationStatement, etc.' },
+          { n: 2, name: 'Gate + sign + push', desc: 'All six checks must pass; push needs both signatures.' }
+        ],
+        tries: ['Sign here, counter-sign on Patient, then push.'] },
+      gov: { title: 'Governance — patterns, not blame',
+        what: 'Safety KPIs, error taxonomy, version registry, and the fiscal strip.',
+        why: 'Version registries and error trends make vendor drift visible and contractable — a ticket, not a mystery.',
+        components: [
+          { n: 1, name: 'Error taxonomy', desc: 'Flags by category with trend — feeds threshold tuning.' },
+          { n: 2, name: 'Version registry', desc: 'Every signed note records its model + template versions.' }
+        ],
+        tries: ['Compare blocked signs here with the attempts you made on Note.'] }
+    };
+  }
+
+  sent(id) {
+    const base = this.SENTENCES.find(s => s.id === id);
+    const o = this.state.overrides[id] || {};
+    return Object.assign({}, base, o);
+  }
+  openFlags() { return Object.values(this.state.tasks).filter(v => v === 'open').length; }
+
+  resolveTask(taskId, act, newText) {
+    const task = this.TASKS.find(t => t.id === taskId);
+    const ov = Object.assign({}, this.state.overrides);
+    if (act === 'remove') {
+      ov[task.sid] = Object.assign({}, ov[task.sid], { removed: true });
+      this.setState(s => ({ overrides: ov, tasks: Object.assign({}, s.tasks, { [taskId]: 'removed' }) }));
+      this.toast('Sentence ' + task.sid + ' removed. Logged to audit ledger.');
+    } else {
+      ov[task.sid] = Object.assign({}, ov[task.sid], { prov: 'CV' }, newText ? { text: newText } : {});
+      this.setState(s => ({ overrides: ov, tasks: Object.assign({}, s.tasks, { [taskId]: 'done' }) }));
+      this.toast('Flag resolved · ' + task.sid + ' is now CV.');
+    }
+  }
+
+  playTurn(id) {
+    clearTimeout(this._playT);
+    if (this.state.playingTurn === id) { this.setState({ playingTurn: null }); return; }
+    this.setState({ playingTurn: id });
+    this._playT = setTimeout(() => this.setState({ playingTurn: null }), 3000);
+  }
+
+  fmtClock(sec) {
+    const m = Math.floor(sec / 60), s = sec % 60;
+    return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  chipStyle(bg, color, bd) {
+    return { fontSize: '10px', fontWeight: 600, background: bg, color: color, padding: '3px 9px', borderRadius: '16px', border: bd ? '1px solid ' + bd : 'none', whiteSpace: 'nowrap' };
+  }
+  tokStyle(code) {
+    const p = this.PROV[code];
+    return { flex: 'none', fontFamily: 'ui-monospace,Menlo,monospace', fontSize: '9px', fontWeight: 700, color: p.color, background: p.bg, border: '1px solid ' + p.bd, borderRadius: '5px', padding: '2px 5px', width: '20px', textAlign: 'center', marginTop: '2px' };
+  }
+  btn(kind) {
+    if (kind === 'primary') return { background: '#0f766e', color: '#fff', border: 'none', borderRadius: '8px', padding: '7px 12px', fontSize: '11px', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' };
+    return { background: '#fff', color: '#475569', border: '1px solid #d3dbe1', borderRadius: '8px', padding: '7px 12px', fontSize: '11px', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' };
+  }
+
+  renderVals() {
+    const S = this.state;
+    const labelsOn = this.props.showLabels ?? true;
+    const flags = this.openFlags();
+    const signReady = flags === 0;
+
+    const badgeStyle = labelsOn
+      ? { flex: 'none', width: '16px', height: '16px', borderRadius: '50%', background: '#0f766e', color: '#fff', fontSize: '9px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 0 2px rgba(15,118,110,.18)' }
+      : { display: 'none' };
+
+    // -------- header --------
+    const screenKey = S.sub || S.tab;
+    const headerTitles = {
+      home: ['AI Scribe', 'Riverside Family Practice · Room 4'],
+      record: ['Record — Adaeze O.', 'Consent & capture · encounter #E-20481'],
+      chat: ['Adaeze O. · 54F', 'Transcript + live verification · 03:15'],
+      note: ['Draft note — Adaeze O.', 'SOAP · every sentence has provenance'],
+      more: ['More', 'Evidence · Patient · Write-back · Governance'],
+      evidence: ['Evidence & provenance', 'The contract behind every sentence'],
+      patient: ['Patient view', 'Adaeze\u2019s portal · sign & push'],
+      writeback: ['EHR write-back', 'Mapping · gate · dual signature'],
+      gov: ['Governance', 'For safety & informatics leads']
+    };
+    const [headerTitle, headerSub] = headerTitles[screenKey];
+
+    const flagPillLabel = flags > 0 ? '⚑ ' + flags : '✓';
+    const flagPillStyle = Object.assign({}, flags > 0 ? this.chipStyle('#fdecec', '#a3202a', '#f2c6c8') : this.chipStyle('#e3f1e7', '#1f7a3d'), { flex: 'none', fontSize: '11px', fontWeight: 700 });
+
+    // -------- nav --------
+    const navDefs = [
+      ['home', '⌂', 'Home'],
+      ['record', '●', 'Record'],
+      ['chat', '💬', 'Chat'],
+      ['note', '☰', 'Note'],
+      ['more', '⋯', 'More']
+    ];
+    const navItems = navDefs.map(([id, icon, label]) => {
+      const active = S.tab === id;
+      return {
+        icon, label,
+        go: () => this.setState({ tab: id, sub: null, drawer: null }),
+        badge: id === 'chat' && flags > 0 ? flags : null,
+        style: {
+          flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '7px 0 5px',
+          background: 'transparent', border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+          color: active ? '#0f766e' : '#8a979e', borderRadius: '12px'
+        }
+      };
+    });
+
+    // -------- consent --------
+    const consentDefs = [
+      ['rec', 'Ambient recording', 'Microphone captures the room conversation.'],
+      ['tx', 'Transcription', 'Speech → text with speaker attribution.'],
+      ['draft', 'AI note drafting', 'A draft note is generated from the transcript.'],
+      ['portal', 'Portal release', 'Signed note becomes visible to the patient.'],
+      ['secondary', 'Model improvement', 'De-identified reuse. Off by default.']
+    ];
+    const consentItems = consentDefs.map(([k, label, desc], i) => {
+      const on = S.consent[k];
+      return {
+        label, desc,
+        toggle: () => this.setState(s => ({ consent: Object.assign({}, s.consent, { [k]: !s.consent[k] }) })),
+        rowStyle: { display: 'flex', alignItems: 'center', gap: '10px', padding: '9px 2px', borderTop: i === 0 ? 'none' : '1px solid #eef2f4', cursor: 'pointer' },
+        swStyle: { flex: 'none', width: '40px', height: '24px', borderRadius: '13px', background: on ? '#0f766e' : '#c6cfd4', position: 'relative', transition: 'background .2s' },
+        knobStyle: { position: 'absolute', top: '2px', left: on ? '18px' : '2px', width: '20px', height: '20px', borderRadius: '50%', background: '#fff', transition: 'left .2s', boxShadow: '0 1px 3px rgba(0,0,0,.25)' }
+      };
+    });
+    const coreConsent = S.consent.rec && S.consent.tx;
+    const readyCardStyle = {
+      background: coreConsent ? '#e3f1e7' : '#fdf3e0', border: '1px solid ' + (coreConsent ? '#b9dcc3' : '#ecd9ab'),
+      borderRadius: '16px', padding: '14px 16px'
+    };
+
+    // -------- transcript --------
+    const turns = this.TURNS.map(u => {
+      const isC = u.role === 'c';
+      const meta = (u.flags.length + u.links.length) > 0;
+      return {
+        id: u.id, time: u.time, text: u.text,
+        name: isC ? 'Dr. Hassan' : 'Adaeze',
+        rowStyle: { display: 'flex', justifyContent: isC ? 'flex-end' : 'flex-start', margin: '4px 0' },
+        bubbleStyle: {
+          maxWidth: '86%', padding: '9px 12px', borderRadius: isC ? '15px 15px 4px 15px' : '15px 15px 15px 4px',
+          background: isC ? '#dcefec' : '#ffffff',
+          border: isC ? '1px solid #bcdcd7' : '1px solid #dde4e8',
+          boxShadow: '0 1px 3px rgba(20,40,50,.05)'
+        },
+        nameStyle: { fontSize: '10.5px', fontWeight: 700, color: isC ? '#0b5a54' : '#6d4fa1' },
+        play: () => this.playTurn(u.id),
+        playing: S.playingTurn === u.id,
+        playIcon: S.playingTurn === u.id ? '❚❚' : '▶',
+        playStyle: { flex: 'none', width: '22px', height: '22px', borderRadius: '50%', border: 'none', cursor: 'pointer', fontSize: '8px', background: isC ? '#0f766e' : '#6d4fa1', color: '#fff', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' },
+        hasMeta: meta,
+        flags: u.flags.map(f => ({
+          label: f.label,
+          style: Object.assign({}, f.kind === 'ok' ? this.chipStyle('#e3f1e7', '#1f7a3d', '#b9dcc3') : this.chipStyle('#fdf3e0', '#8a4b0f', '#ecd9ab'), { fontSize: '10px' })
+        })),
+        links: u.links.map(sid => ({ sid, go: () => this.setState({ tab: 'note', sub: null, drawer: sid }) }))
+      };
+    });
+
+    // -------- verification tasks --------
+    const taskCards = this.TASKS.map(t => {
+      const st = S.tasks[t.id];
+      const isOpen = st === 'open';
+      const s = this.sent(t.sid);
+      return {
+        sev: t.sev, cat: t.cat, ref: t.ref, sentence: s.text, why: t.why, isOpen,
+        cardStyleCompact: { background: isOpen ? '#fff' : '#f8fafb', border: isOpen ? '1.5px solid ' + (t.sev === 'HIGH' ? '#e4a6aa' : '#ecd9ab') : '1px solid #e4eaed', borderRadius: '12px', padding: '10px 12px', opacity: isOpen ? 1 : .8 },
+        sevStyle: Object.assign({}, t.sev === 'HIGH' ? this.chipStyle('#fdecec', '#a3202a', '#f2c6c8') : this.chipStyle('#fdf3e0', '#8a4b0f', '#ecd9ab'), { fontSize: '9px' }),
+        resolution: isOpen ? null : (st === 'removed' ? 'Sentence removed from the note' : t.resolvedMsg),
+        actions: t.actions.map(a => ({
+          label: a.label,
+          styleCompact: Object.assign({}, this.btn(a.kind), { fontSize: '11px', padding: '6px 11px' }),
+          run: () => {
+            if (a.act === 'play') { this.playTurn(a.turn); this.toast('Replaying T3 — “Are you taking it ten milligrams, once daily?”'); }
+            else this.resolveTask(t.id, a.act, a.newText);
+          }
+        }))
+      };
+    });
+
+    const flagChipLabel = flags > 0 ? flags + ' open' : 'All resolved ✓';
+    const flagChipStyle = flags > 0 ? this.chipStyle('#fdecec', '#a3202a', '#f2c6c8') : this.chipStyle('#e3f1e7', '#1f7a3d');
+
+    // -------- note --------
+    const secNames = ['Subjective', 'Objective', 'Assessment', 'Plan'];
+    const noteSections = secNames.map(title => ({
+      title,
+      sentences: this.SENTENCES.filter(s => s.sec === title).map(base => {
+        const s = this.sent(base.id);
+        if (s.removed) return {
+          id: s.id, prov: '—', text: '(removed — retained on audit ledger)', open: () => {},
+          rowStyle: { display: 'flex', gap: '8px', padding: '5px 7px', borderRadius: '8px', opacity: .45, fontStyle: 'italic' },
+          tokStyle: { flex: 'none', width: '20px', textAlign: 'center', fontSize: '9px', color: '#8a979e', marginTop: '2px' }, chip: null
+        };
+        const taskOpen = base.task && S.tasks[base.task] === 'open';
+        return {
+          id: s.id, prov: s.prov, text: s.text,
+          open: () => this.setState({ drawer: s.id }),
+          rowStyle: {
+            display: 'flex', gap: '8px', padding: '5px 7px', borderRadius: '8px', cursor: 'pointer', alignItems: 'flex-start',
+            background: S.drawer === s.id ? '#e4f2f0' : 'transparent'
+          },
+          tokStyle: this.tokStyle(s.prov),
+          chip: taskOpen ? '⚑' : null,
+          chipStyle: Object.assign({}, this.chipStyle('#fdecec', '#a3202a', '#f2c6c8'), { fontSize: '10px', padding: '2px 7px' })
+        };
+      })
+    }));
+    const provLegendMini = Object.keys(this.PROV).map(code => ({ code, tokStyle: this.tokStyle(code) }));
+
+    // -------- sign --------
+    const trySign = () => {
+      if (S.signed) { this.toast('Already signed.'); return; }
+      if (!signReady) {
+        this.setState(s => ({ unsafeAttempts: s.unsafeAttempts + 1 }));
+        this.toast('Sign blocked: ' + flags + ' unresolved flag' + (flags > 1 ? 's' : '') + '. Attempt logged. Resolve them in Chat.');
+      } else {
+        this.setState({ signed: true });
+        this.toast('Signed — hash a91f…c47e frozen. Waiting for the patient\u2019s counter-signature.');
+      }
+    };
+    const signBase = { fontFamily: 'inherit', fontSize: '11.5px', fontWeight: 700, borderRadius: '10px', padding: '9px 14px', border: 'none', cursor: 'pointer', flex: 'none' };
+    const signBtnStyle = Object.assign({}, signBase, S.signed
+      ? { background: '#e3f1e7', color: '#1f7a3d', cursor: 'default' }
+      : signReady ? { background: '#1f7a3d', color: '#fff' } : { background: '#c6cfd4', color: '#fff' });
+    const signBtnLabel = S.signed ? 'Signed ✓' : signReady ? 'Sign note' : '🔒 Sign · ' + flags;
+
+    // -------- more hub --------
+    const moreDefs = [
+      ['evidence', '⛓', '#e4f2f0', '#0f766e', 'Evidence & provenance', 'The 5-class contract and the pipeline from speech to signed record.', null],
+      ['patient', '👤', '#f6f2e9', '#7a7261', 'Patient view', 'Adaeze\u2019s plain-language summary, counter-signature, corrections.', S.patientAcked ? 'Signed ✓' : null],
+      ['writeback', '⬆', '#eaf1f7', '#2b5d8a', 'EHR write-back', 'Field mapping, sign-off gate, dual signature, push.', S.pushed ? 'Pushed ✓' : S.signed ? 'Awaiting patient' : null],
+      ['gov', '📊', '#efeaf7', '#6d4fa1', 'Governance', 'Error taxonomy, versions, corrections, fiscal strip.', null]
+    ];
+    const moreItems = moreDefs.map(([id, icon, bg, color, title, desc, chip]) => ({
+      icon, title, desc, chip,
+      chipStyle: this.chipStyle('#e3f1e7', '#1f7a3d'),
+      iconStyle: { flex: 'none', width: '42px', height: '42px', borderRadius: '13px', background: bg, color: color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' },
+      go: () => this.setState({ sub: id, drawer: null })
+    }));
+
+    // -------- evidence sub --------
+    const pipeDefs = [
+      ['🎙', 'Audio span', 'Recorded with consent; pausable; retained per policy'],
+      ['📝', 'Transcript turn', 'Speaker + timestamp + ASR confidence'],
+      ['🤖', 'Draft sentence', 'Model + template versions recorded'],
+      ['👩‍⚕️', 'Review event', 'Verify / edit / remove / reattribute — all logged'],
+      ['🔏', 'Signed record', 'Hash + both signatures + frozen provenance']
+    ];
+    const pipeline = pipeDefs.map(([icon, name, desc], i) => ({
+      icon, name, desc, arrow: i < pipeDefs.length - 1,
+      dotStyle: { width: '38px', height: '38px', borderRadius: '50%', background: '#e4f2f0', border: '1px solid #bcdcd7', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flex: 'none' }
+    }));
+    const provLegend = Object.keys(this.PROV).map(code => {
+      const p = this.PROV[code];
+      return { code, name: p.name, desc: p.desc, tokStyle: Object.assign({}, this.tokStyle(code), { width: '24px', fontSize: '10px', padding: '3px 5px' }) };
+    });
+
+    // -------- patient sub --------
+    const paraDefs = [
+      ['P1', 'How you have been', 'You told us you have been feeling better since we increased your blood-pressure tablet (lisinopril), though you sometimes feel a little dizzy in the mornings.'],
+      ['P2', null, 'Your blood pressure today was 142 over 88 — better than before, and getting close to the target we agreed together.'],
+      ['P3', 'Your medicine', 'We talked about taking your tablet at the same time each morning, and about checking with us before starting herbal supplements such as garlic tablets.'],
+      ['P4', 'What happens next', 'We have ordered a simple blood test to check your kidneys are happy with the medicine, and we will see you again in four weeks.']
+    ];
+    const patientParas = paraDefs.map(([pid, heading, text]) => ({
+      text, heading,
+      rowStyle: { display: 'flex', gap: '10px', alignItems: 'flex-start', padding: '4px 6px', margin: '0 -6px', borderRadius: '8px', background: S.flaggingPara === pid ? '#f6f2e9' : 'transparent' },
+      flag: () => this.setState({ flaggingPara: pid, pickedReason: null }),
+      btnStyle: { flex: 'none', fontFamily: 'inherit', fontSize: '10px', fontWeight: 600, color: '#9a917e', background: 'transparent', border: '1px solid #e0d9c8', borderRadius: '50%', width: '24px', height: '24px', cursor: 'pointer', marginTop: '2px' }
+    }));
+    const reasonDefs = ['Factually wrong', 'I never said this', 'I don\u2019t understand', 'Feels unfair'];
+    const correctionReasons = reasonDefs.map(r => ({
+      label: r,
+      pick: () => this.setState({ pickedReason: r }),
+      style: S.pickedReason === r
+        ? { fontFamily: 'inherit', fontSize: '10.5px', fontWeight: 700, color: '#fdfcf9', background: '#0f766e', border: '1px solid #0f766e', borderRadius: '15px', padding: '6px 12px', cursor: 'pointer' }
+        : { fontFamily: 'inherit', fontSize: '10.5px', fontWeight: 600, color: '#3d382a', background: '#fdfcf9', border: '1px solid #e0d9c8', borderRadius: '15px', padding: '6px 12px', cursor: 'pointer' }
+    }));
+    const submitCorrection = () => {
+      if (!S.pickedReason) { this.toast('Pick a reason first.'); return; }
+      this.setState({ correctionSent: true, flaggingPara: null });
+      this.toast('Correction request CR-1042 created and routed to the signatory.');
+    };
+    const submitCorStyle = { fontFamily: 'inherit', fontSize: '11.5px', fontWeight: 700, color: '#fff', background: '#0f766e', border: 'none', borderRadius: '9px', padding: '8px 16px', cursor: 'pointer', opacity: S.pickedReason ? 1 : .45 };
+
+    // -------- writeback sub --------
+    const mapDefs = [
+      ['Note narrative', 'FHIR DocumentReference', 'ok'],
+      ['Problem: Hypertension', 'FHIR Condition → Problem list', 'ok'],
+      ['Med: lisinopril 10 mg', 'FHIR MedicationStatement', flags > 0 ? 'hold' : 'ok'],
+      ['Follow-up 4 weeks', 'Scheduling API → task', 'ok'],
+      ['Audit pointer', '#E-20481 → provenance ledger', 'ok']
+    ];
+    const mappings = mapDefs.map(([what, route, st]) => ({
+      what, route,
+      status: st === 'ok' ? '✓' : 'Held',
+      stStyle: Object.assign({}, st === 'ok' ? this.chipStyle('#e3f1e7', '#1f7a3d') : this.chipStyle('#fdf3e0', '#8a4b0f', '#ecd9ab'), { fontSize: '10px' })
+    }));
+    const gateDefs = [
+      ['Consent recorded (scoped)', true],
+      ['Verification queue empty', signReady],
+      ['Field mappings resolved', signReady],
+      ['Patient visibility confirmed', true],
+      ['Clinician signature', S.signed],
+      ['Patient counter-signature', S.patientAcked]
+    ];
+    const gateItems = gateDefs.map(([label, ok]) => ({
+      label,
+      icon: ok ? '✓' : '✕',
+      dotStyle: { flex: 'none', width: '18px', height: '18px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 700, background: ok ? '#e3f1e7' : '#fdecec', color: ok ? '#1f7a3d' : '#a3202a' }
+    }));
+    const signBtnStyleWide = Object.assign({}, signBtnStyle, { width: '100%', marginTop: '12px' });
+
+    // -------- gov sub --------
+    const barDefs = [
+      ['Medication / dose', 14, '#c22730', '▲ 2', '#a3202a'],
+      ['Negation & denials', 9, '#c22730', '▼ 4', '#1f7a3d'],
+      ['Template carryover', 11, '#92610c', '▼ 1', '#1f7a3d'],
+      ['Speaker attribution', 6, '#92610c', '— 0', '#8a979e'],
+      ['Billing expansion', 4, '#6d4fa1', '▼ 3', '#1f7a3d']
+    ];
+    const maxBar = 14;
+    const govBars = barDefs.map(([name, n, color, trend, tc], i) => ({
+      name, n, trend,
+      trendStyle: { fontSize: '10px', fontWeight: 700, color: tc },
+      rowStyle: { padding: '7px 0', borderTop: i === 0 ? 'none' : '1px solid #eef2f4' },
+      barStyle: { height: '9px', width: Math.round(n / maxBar * 100) + '%', background: color, borderRadius: '5px' }
+    }));
+
+    // -------- drawer --------
+    let drawerData = null;
+    if (S.drawer) {
+      const s = this.sent(S.drawer);
+      if (!s.removed) {
+        const p = this.PROV[s.prov];
+        const supTurns = s.turns.map(tid => {
+          const u = this.TURNS.find(x => x.id === tid);
+          const isC = u.role === 'c';
+          return {
+            name: (isC ? 'Clinician' : 'Patient') + ' · ' + tid, time: u.time, text: u.text,
+            nameStyle: { fontSize: '9.5px', fontWeight: 700, color: isC ? '#0b5a54' : '#6d4fa1' },
+            play: () => this.playTurn(tid),
+            playIcon: S.playingTurn === tid ? '❚❚' : '▶',
+            playStyle: { flex: 'none', width: '18px', height: '18px', borderRadius: '50%', border: 'none', cursor: 'pointer', fontSize: '7px', background: isC ? '#0f766e' : '#6d4fa1', color: '#fff', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginLeft: 'auto' }
+          };
+        });
+        const base = this.SENTENCES.find(x => x.id === S.drawer);
+        const taskOpen = base.task && S.tasks[base.task] === 'open';
+        const acts = [];
+        if (taskOpen) acts.push({ label: '⚑ Resolve in Chat', style: this.btn('primary'), run: () => this.setState({ tab: 'chat', sub: null, drawer: null, verifySheetOpen: true }) });
+        else if (s.prov !== 'CV' && s.prov !== 'CA') acts.push({ label: '✓ Verify → CV', style: this.btn('primary'), run: () => { const ov = Object.assign({}, this.state.overrides); ov[s.id] = Object.assign({}, ov[s.id], { prov: 'CV' }); this.setState({ overrides: ov }); this.toast(s.id + ' verified — now CV.'); } });
+        if (supTurns.length) acts.push({ label: 'View in Chat', style: this.btn('ghost'), run: () => this.setState({ tab: 'chat', sub: null, drawer: null }) });
+        drawerData = {
+          sid: s.id, text: s.text, prov: s.prov, provName: p.name, provDesc: p.desc,
+          tokStyle: Object.assign({}, this.tokStyle(s.prov), { width: '24px', fontSize: '10px', padding: '3px 5px' }),
+          hasTurns: supTurns.length > 0, turns: supTurns,
+          noTurns: supTurns.length === 0,
+          noTurnsMsg: s.prov === 'TP' ? 'No supporting utterance — copied forward from the previous visit (08 Apr).' : 'No transcript support required — clinician-authored.',
+          actions: acts
+        };
+      }
+    }
+    const drawerStyle = {
+      position: 'absolute', left: 0, right: 0, bottom: 0, maxHeight: '62%', background: '#fff',
+      borderRadius: '20px 20px 0 0', boxShadow: '0 -14px 40px rgba(18,36,43,.25)',
+      display: 'flex', flexDirection: 'column', zIndex: 60,
+      transform: drawerData ? 'translateY(0)' : 'translateY(110%)', transition: 'transform .3s ease'
+    };
+
+    // -------- verify sheet --------
+    const verifySheetStyle = {
+      position: 'absolute', left: 0, right: 0, bottom: 0, background: '#fff',
+      borderRadius: '20px 20px 0 0', boxShadow: '0 -10px 30px rgba(18,36,43,.16)',
+      display: 'flex', flexDirection: 'column', zIndex: 40,
+      maxHeight: S.verifySheetOpen ? '58%' : '92px'
+    };
+
+    // -------- walkthrough --------
+    const explain = this.EXPLAIN[screenKey];
+    const walkStyle = {
+      position: 'absolute', left: 0, right: 0, bottom: 0, maxHeight: '72%', zIndex: 70,
+      display: 'flex', flexDirection: 'column',
+      borderRadius: '20px 20px 0 0', overflow: 'hidden',
+      boxShadow: '0 -16px 44px rgba(18,36,43,.3)',
+      transform: S.walkOpen ? 'translateY(0)' : 'translateY(110%)', transition: 'transform .3s ease'
+    };
+
+    return {
+      badgeStyle,
+      // header
+      headerTitle, headerSub, headerBack: !!S.sub,
+      goBackMore: () => this.setState({ sub: null, drawer: null }),
+      flagPillLabel, flagPillStyle,
+      recording: S.recording, recClock: this.fmtClock(S.recSeconds), toast: S.toast,
+      // nav
+      navItems,
+      // screens
+      isHome: S.tab === 'home' && !S.sub,
+      isRecord: S.tab === 'record' && !S.sub,
+      isChat: S.tab === 'chat' && !S.sub,
+      isNote: S.tab === 'note' && !S.sub,
+      isMoreHub: S.tab === 'more' && !S.sub,
+      isEvidenceSub: S.sub === 'evidence',
+      isPatientSub: S.sub === 'patient',
+      isWritebackSub: S.sub === 'writeback',
+      isGovSub: S.sub === 'gov',
+      // home
+      goRecord: () => this.setState({ tab: 'record', sub: null }),
+      homeFlagLabel: flags > 0 ? '⚑ ' + flags : '✓',
+      homeFlagStyle: Object.assign({}, flags > 0 ? this.chipStyle('#fdecec', '#a3202a', '#f2c6c8') : this.chipStyle('#e3f1e7', '#1f7a3d'), { fontSize: '11px', fontWeight: 700 }),
+      noteStateLabel: S.pushed ? 'In EHR ✓' : S.signed ? 'Signed' : 'Unsigned',
+      noteStateStyle: Object.assign({}, S.pushed ? this.chipStyle('#e3f1e7', '#1f7a3d') : S.signed ? this.chipStyle('#e4f2f0', '#0b5a54') : this.chipStyle('#eaf1f7', '#2b5d8a'), { fontSize: '9.5px' }),
+      ehrChipLabel: S.pushed ? 'EHR ✓' : 'EHR —',
+      ehrChipStyle: Object.assign({}, S.pushed ? this.chipStyle('#e3f1e7', '#1f7a3d') : this.chipStyle('#eaeef2', '#475569'), { fontSize: '9.5px' }),
+      unsafeAttempts: S.unsafeAttempts,
+      // record
+      consentItems, readyCardStyle,
+      readyTitle: coreConsent ? (S.recording ? 'Recording in progress' : 'Ready to record') : 'Not ready — core consent missing',
+      readyDesc: coreConsent ? 'Consent ✓ · devices ✓ · EHR matched ✓' : 'Recording + transcription consent required first.',
+      toggleRec: () => {
+        if (!coreConsent) { this.toast('Cannot start: recording/transcription consent not granted.'); return; }
+        if (S.recording) { this.setState({ recording: false }); this.toast('Recording stopped at ' + this.fmtClock(S.recSeconds) + '.'); }
+        else { this.setState({ recording: true, recSeconds: 0 }); this.toast('Ambient recording started — consent scope and device state logged.'); }
+      },
+      recBtnStyle: Object.assign({ fontFamily: 'inherit', width: '100%', marginTop: '10px', fontSize: '13px', fontWeight: 700, borderRadius: '12px', padding: '13px', border: 'none', cursor: 'pointer' },
+        S.recording ? { background: '#c22730', color: '#fff' } : coreConsent ? { background: '#0f766e', color: '#fff' } : { background: '#c6cfd4', color: '#fff' }),
+      recBtnLabel: S.recording ? '■ Stop recording' : '● Start ambient recording',
+      // chat
+      turns, taskCards, flagChipLabel, flagChipStyle,
+      verifySheetOpen: S.verifySheetOpen,
+      verifySheetCaret: S.verifySheetOpen ? '▾' : '▴',
+      toggleVerifySheet: () => this.setState(s => ({ verifySheetOpen: !s.verifySheetOpen })),
+      verifySheetStyle,
+      allResolved: signReady && !S.signed,
+      // note
+      noteSections, provLegendMini, trySign, signBtnStyle, signBtnLabel,
+      // more
+      moreItems,
+      // evidence
+      pipeline, provLegend,
+      // patient
+      patientParas, flaggingPara: !!S.flaggingPara, correctionReasons, submitCorrection, submitCorStyle,
+      cancelFlag: () => this.setState({ flaggingPara: null }),
+      correctionSent: S.correctionSent,
+      patientAcked: S.patientAcked, notAcked: !S.patientAcked,
+      ackHint: S.patientAcked
+        ? 'Your signature is attached to this exact version.'
+        : S.signed
+          ? 'Dr. Hassan has signed. Confirm you\u2019ve read your summary.'
+          : 'Unlocks when your doctor signs the clinical note.',
+      patientAck: () => {
+        if (!S.signed) { this.toast('Locked until Dr. Hassan signs (More → EHR write-back, or Note screen).'); return; }
+        this.setState({ patientAcked: true });
+        this.toast('Patient signature recorded (09:56) and added to the ledger.');
+      },
+      pushed: S.pushed, notPushed: !S.pushed,
+      pushHint: S.pushed
+        ? 'This visit is now part of your permanent record.'
+        : S.signed && S.patientAcked
+          ? 'Both signatures in place — ready to enter your record.'
+          : 'Available after both you and Dr. Hassan have signed.',
+      pushEHR: () => {
+        if (!S.signed) { this.toast('Push blocked: clinician has not signed yet.'); return; }
+        if (!S.patientAcked) { this.toast('Push blocked: waiting for the patient\u2019s counter-signature.'); return; }
+        this.setState({ pushed: true });
+        this.toast('Note written to the EHR via FHIR DocumentReference · #E-20481.');
+      },
+      pushBtnStyle: Object.assign(
+        { fontFamily: 'inherit', width: '100%', marginTop: '10px', fontSize: '12px', fontWeight: 700, borderRadius: '10px', padding: '11px', border: 'none', cursor: 'pointer' },
+        S.signed && S.patientAcked ? { background: '#0f766e', color: '#fff' } : { background: '#e0d9c8', color: '#9a917e' }
+      ),
+      pushBtnStyleWB: Object.assign(
+        { fontFamily: 'inherit', width: '100%', marginTop: '8px', fontSize: '12px', fontWeight: 700, borderRadius: '9px', padding: '10px', border: 'none', cursor: 'pointer' },
+        S.patientAcked ? { background: '#1f7a3d', color: '#fff' } : { background: '#c6cfd4', color: '#fff' }
+      ),
+      wbPatientLine: S.pushed ? 'Patient counter-signed ✓ · pushed ✓' : S.patientAcked ? 'Patient counter-signed ✓ — ready to push' : 'Patient counter-signature: pending',
+      // writeback
+      mappings, gateItems, signBtnStyleWide, signed: S.signed,
+      // gov
+      govBars, govCorrOpen: S.correctionSent ? 2 : 1,
+      // drawer
+      drawerData, drawerStyle, closeDrawer: () => this.setState({ drawer: null }),
+      // walkthrough
+      explain,
+      walkOpen: S.walkOpen, walkStyle,
+      toggleWalk: () => this.setState(s => ({ walkOpen: !s.walkOpen })),
+      closeWalk: () => this.setState({ walkOpen: false }),
+      walkBtnStyle: (this.props.showExplainer ?? true) ? {
+        position: 'absolute', bottom: '16px', right: '14px', zIndex: 45,
+        width: '44px', height: '44px', borderRadius: '50%',
+        fontFamily: 'inherit', fontSize: '18px', fontWeight: 700, cursor: 'pointer',
+        background: '#12242b', color: '#fff', border: 'none',
+        boxShadow: '0 10px 24px rgba(18,36,43,.35)'
+      } : { display: 'none' }
+    };
+  }
+}
+</script>
+</body>
+</html>
